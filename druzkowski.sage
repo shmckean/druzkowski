@@ -5,14 +5,15 @@
 k = QQbar;
 
 A = [[0,1,0],[-1,0,1],[0,1,0]]; # INPUT: matrix of Druzkowski morphism
+q = [1,2,3]; # INPUT: point at which to check injectivity
 
 n = len(A);
 R = PolynomialRing(k,n,'x');
 x = R.gens();
 
-f = []; # (note: computes Druzkowski morphism from A)
+f = []; # (note: computes Druzkowski morphism f_A-q)
 for i in range(n):
-    f.append(x[i]+(sum([A[i][j]*x[j] for j in range(n)]))^3)
+    f.append(-q[i]+x[i]+(sum([A[i][j]*x[j] for j in range(n)]))^3)
 
 print('Jacobian :',jacobian(f,x).det())
     
